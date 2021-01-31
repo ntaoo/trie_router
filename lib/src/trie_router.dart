@@ -6,6 +6,8 @@ import 'trie.dart';
 
 import 'package:quiver/core.dart';
 
+import 'trie_node.dart';
+
 class TrieRouter<T> {
   final Trie<String, T> _trie;
 
@@ -118,13 +120,14 @@ class TrieRouterData<T> {
   int get hashCode => hash2(value, DeepCollectionEquality().hash(parameters));
 
   @override
-  operator ==(Object other) {
+  bool operator ==(Object other) {
     return other is TrieRouterData<T> &&
         value == other.value &&
         DeepCollectionEquality().equals(parameters, other.parameters);
   }
 
+  @override
   String toString() {
-    return 'RouterGetResult value: $value paramters $parameters';
+    return 'RouterGetResult value: $value parameters $parameters';
   }
 }
